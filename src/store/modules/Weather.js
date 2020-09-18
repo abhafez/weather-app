@@ -2,11 +2,11 @@ import axios from 'axios';
 const baseUrl = 'https://api.openweathermap.org/data/2.5';
 
 const state = {
-  currentCityTemp: 'hello',
+  currentCityData: {},
 };
 
 const getters = {
-  currentCityTemp: state => state.currentCityTemp,
+  currentCityData: state => state.currentCityData,
 };
 
 const actions = {
@@ -14,17 +14,19 @@ const actions = {
     const { city, lon, lat } = payload;
     const response = await axios.get(`${baseUrl}/weather`, {
       params: {
-        q: city || null,
+        q: city,
         appid: '641d47bc20e1dabe6a69d811be1a11af',
-        lon: lon || null,
-        lat: lat || null,
+        lon: lon,
+        lat: lat,
       },
     });
     commit('setCityTemp', response.data);
   },
 };
 
-const mutations = {};
+const mutations = {
+  setCityTemp: (state, data) => (state.currentCityData = data),
+};
 
 export default {
   state,
