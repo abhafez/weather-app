@@ -8,7 +8,7 @@
       v-on:input="debounceCitySearch"
     />
     <div
-      class="w-64 cursor-pointer border rounded flex flex-col justify-center items-center text-center p-6 bg-white"
+      class="w-128 cursor-pointer border rounded flex flex-col justify-center items-center text-center p-6 bg-white"
     >
       <div class="text-md font-bold flex flex-col text-gray-900">
         <span class="uppercase">Today</span>
@@ -17,17 +17,15 @@
         </span>
       </div>
       <div class="w-32 h-32 flex items-center justify-center">
-        <!-- TODO: IMG HERE -->
+        <img :src="icon" />
       </div>
       <p class="text-gray-700 mb-2">Partly cloud</p>
       <div class="text-3xl font-bold text-gray-900 mb-6">
-        {{ Math.floor(tempMin) }}
-        {{ isCelsius ? 'º' : 'F' }}
+        {{ Math.floor(tempMin) }} {{ unit }}
         <span class="font-normal text-gray-700 mx-1">/</span>
-        {{ Math.floor(tempMax) }}
-        {{ isCelsius ? 'º' : 'F' }}
+        {{ Math.floor(tempMax) }} {{ unit }}
       </div>
-      <div class="flex justify-between w-full">
+      <div class="">
         <div class="flex items-center text-gray-700 px-2">
           <WindImage />
           {{ windSpeed }} <cite>km/h</cite>
@@ -59,9 +57,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchWeather']),
-    kelvinToCelsius: temp => {
-      return Math.ceil(temp - 273.15);
-    },
+    kelvinToCelsius: temp => Math.ceil(temp - 273.15),
     celsiusToFahrenhiet: cel => cel * 1.8 + 32.0,
     fahrenheitToCelsius: fahr => ((fahr - 32) * 5) / 9,
     getDefaultCoords: function() {
@@ -77,6 +73,12 @@ export default {
   },
   computed: {
     ...mapGetters(['currentCityData', 'isCelsius']),
+    unit: function() {
+      return this.isCelsius ? 'º' : 'F';
+    },
+    icon: function() {
+      return `https://openweathermap.org/img/wn/${this.currentCityData?.weather[0]?.icon}@2x.png`;
+    },
   },
   watch: {
     currentCityData: function(cityData) {
