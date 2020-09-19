@@ -17,7 +17,7 @@
         >
           <div class="text-md font-bold flex flex-col text-gray-900">
             <span class="uppercase">Today</span>
-            <span v-if="currentCityData.sys.country">
+            <span v-if="currentCityData.sys && currentCityData.sys.country">
               {{ currentCityData.sys.country }}
             </span>
             <span class="font-normal text-gray-700 text-sm">
