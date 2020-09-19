@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="w-128 cursor-pointer flex flex-col justify-center items-center text-center p-6 bg-white"
-  >
+  <div class="mt-4">
     <p class="font-serif text-lg text-gray-800 text-center">
       Favorite cities
     </p>
