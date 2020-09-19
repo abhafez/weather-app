@@ -42,7 +42,12 @@
         </div>
       </div>
       <div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <FavoriteCities />
+        <div
+          class="w-128 cursor-pointer flex flex-col justify-center items-center text-center p-6 bg-white"
+        >
+          <Clock />
+          <FavoriteCities />
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +58,7 @@ import { mapGetters, mapActions } from 'vuex';
 import _ from 'lodash';
 import FavoriteCities from '../components/FavoriteCities';
 import Modal from '../components/Modal';
+import Clock from '../components/Clock';
 import WindImage from '../svgs/Wind';
 
 export default {
@@ -71,6 +77,7 @@ export default {
     WindImage,
     FavoriteCities,
     Modal,
+    Clock,
   },
   methods: {
     ...mapActions(['fetchWeather', 'setCity']),
