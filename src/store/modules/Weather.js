@@ -4,11 +4,17 @@ const baseUrl = 'https://api.openweathermap.org/data/2.5';
 const state = {
   currentCityData: {},
   isCelsius: true,
+  city: 'Alexandria, EG',
+  showModal: false,
+  favoriteList: [],
 };
 
 const getters = {
   currentCityData: state => state.currentCityData,
   isCelsius: state => state.isCelsius,
+  city: state => state.city,
+  modal: state => state.showModal,
+  favoriteList: state => state.favoriteList,
 };
 
 const actions = {
@@ -27,14 +33,24 @@ const actions = {
   convertoToCelisus({ commit }) {
     commit('setCelsius', true);
   },
+  setCity({ commit }, city) {
+    commit('setCity', city);
+  },
   convertoToFahr({ commit }) {
     commit('setCelsius', false);
+  },
+  addToFavoriteList({ commit }, city) {
+    commit('addToFavoriteList', city);
   },
 };
 
 const mutations = {
   setCityTemp: (state, data) => (state.currentCityData = data),
   setCelsius: (state, isCelsius) => (state.isCelsius = isCelsius),
+  setCity: (state, city) => (state.city = city),
+  setShowModal: (state, modalState) => (state.showModal = modalState),
+  addToFavoriteList: (state, city) =>
+    (state.favoriteList = [...state.favoriteList, city]),
 };
 
 export default {

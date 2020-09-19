@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container mx-auto">
+  <div id="app">
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       <!-- LOGO -->
       <div class="flex items-center flex-shrink-0 text-white mr-6">
