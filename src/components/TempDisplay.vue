@@ -12,7 +12,9 @@
     >
       <div class="text-md font-bold flex flex-col text-gray-900">
         <span class="uppercase">Today</span>
-        <span class="font-normal text-gray-700 text-sm">July 29</span>
+        <span class="font-normal text-gray-700 text-sm">
+          {{ new Date() | moment("MMMM,  Do HH:mm A") }}
+        </span>
       </div>
       <div class="w-32 h-32 flex items-center justify-center">
         <!-- TODO: IMG HERE -->
@@ -74,7 +76,9 @@ export default {
       }
     }, 500),
   },
-  computed: { ...mapGetters(['currentCityData']) },
+  computed: {
+    ...mapGetters(['currentCityData']),
+  },
   watch: {
     currentCityData: function(cityData) {
       const tempMax = cityData?.main?.temp_max;
