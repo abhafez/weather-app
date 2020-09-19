@@ -3,10 +3,12 @@ const baseUrl = 'https://api.openweathermap.org/data/2.5';
 
 const state = {
   currentCityData: {},
+  isCelsius: true,
 };
 
 const getters = {
   currentCityData: state => state.currentCityData,
+  isCelsius: state => state.isCelsius,
 };
 
 const actions = {
@@ -22,10 +24,17 @@ const actions = {
     });
     commit('setCityTemp', response.data);
   },
+  convertoToCelisus({ commit }) {
+    commit('setCelsius', true);
+  },
+  convertoToFahr({ commit }) {
+    commit('setCelsius', false);
+  },
 };
 
 const mutations = {
   setCityTemp: (state, data) => (state.currentCityData = data),
+  setCelsius: (state, isCelsius) => (state.isCelsius = isCelsius),
 };
 
 export default {

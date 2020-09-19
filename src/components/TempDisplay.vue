@@ -13,7 +13,7 @@
       <div class="text-md font-bold flex flex-col text-gray-900">
         <span class="uppercase">Today</span>
         <span class="font-normal text-gray-700 text-sm">
-          {{ new Date() | moment("MMMM,  Do HH:mm A") }}
+          {{ new Date() | moment('MMMM,  Do HH:mm A') }}
         </span>
       </div>
       <div class="w-32 h-32 flex items-center justify-center">
@@ -49,7 +49,6 @@ export default {
       tempMin: 0,
       tempMax: 0,
       windSpeed: 0,
-      isCelsius: true,
       city: '',
       userLat: 29.52,
       userLon: 31.34,
@@ -77,7 +76,7 @@ export default {
     }, 500),
   },
   computed: {
-    ...mapGetters(['currentCityData']),
+    ...mapGetters(['currentCityData', 'isCelsius']),
   },
   watch: {
     currentCityData: function(cityData) {
